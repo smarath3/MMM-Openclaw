@@ -6,6 +6,15 @@ A [MagicMirror²](https://magicmirror.builders/) module that connects to [OpenCl
 ![MagicMirror²](https://img.shields.io/badge/MagicMirror²-Module-blueviolet.svg)
 ![OpenClaw](https://img.shields.io/badge/OpenClaw-Skills-orange.svg)
 
+![Morning briefing on Samsung Frame TV](screenshots/morning-briefing.png)
+*Morning briefing with calendar, tasks, weather, and notes — displayed on a Samsung Frame TV*
+
+![Briefing detail — schedule, conflicts, and action items](screenshots/family-briefing-detail.png)
+*Briefing detail — schedule with conflict detection, action items, and reminders*
+
+![Study quiz on the mirror](screenshots/study-quiz.png)
+*Study Companion — interactive science quiz displayed on the mirror*
+
 ## Features
 
 - **🗓️ Family Briefings** — Scheduled morning/evening summaries with calendar, weather, and tasks
@@ -316,6 +325,10 @@ MMM-Openclaw/
 │   ├── setup-mac.sh
 │   ├── dev.sh
 │   └── deploy.sh
+├── screenshots/             # Pi display captures
+│   ├── morning-briefing.png
+│   ├── family-briefing-detail.png
+│   └── study-quiz.png
 ├── docs/
 │   └── architecture.md
 ├── CONTRIBUTING.md
