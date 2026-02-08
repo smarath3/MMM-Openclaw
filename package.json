@@ -1,0 +1,16 @@
+{
+  "name": "mmm-openclaw",
+  "version": "0.2.0",
+  "description": "MagicMirror² module for OpenClaw AI assistant integration",
+  "main": "MMM-Openclaw.js",
+  "keywords": ["magicmirror", "openclaw", "ai", "assistant", "smart-mirror", "raspberry-pi"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smarath3/MMM-Openclaw"
+  },
+  "author": "Sandeep Marathe",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+
+# Local MagicMirror dev instance
+.magicmirror-dev/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# SSH keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*.crt
+*.cer
+
+# OpenClaw sensitive files
+openclaw.json
+openclaw.json.*
+!openclaw.json.example
+
+# Credentials and tokens
+*_token
+*_secret
+*_key
+*credentials*
+*auth*
+*.token
+
+# AWS and cloud credentials
+aws_*
+.aws/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Session files with secrets (local continuity only)
+SESSION-STATUS.md
+*-STATUS.md
+
+# Legacy directory (never commit)
+MMM-Clawdbot/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
