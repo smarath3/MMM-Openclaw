@@ -103,6 +103,47 @@ pm2 restart MagicMirror
 cd ~/MagicMirror && npm start
 ```
 
+## OpenClaw Setup
+
+The module needs an OpenClaw Gateway to connect to. Here's the minimum setup and optional extras.
+
+### Minimum (chat only)
+
+1. Install and run [OpenClaw](https://docs.openclaw.ai/start/getting-started) on your server (AWS, home server, etc.)
+2. Enable the Gateway with a token in `~/.openclaw/openclaw.json`:
+
+```jsonc
+{
+  "gateway": {
+    "enabled": true,
+    "port": 18789,
+    "token": "your-secret-token"
+  }
+}
+```
+
+3. Start the Gateway: `openclaw gateway start`
+4. Ensure your Pi can reach the server — [Tailscale](https://tailscale.com/) is the easiest option, or use an SSH tunnel (`ssh -L 18789:localhost:18789 user@server`)
+5. Set `gatewayUrl` and `gatewayToken` in your MagicMirror config (see [config/config.js.sample](config/config.js.sample) for a complete example)
+
+### Optional: Skills
+
+Deploy the included skills to your OpenClaw host for briefings, tasks, and study sessions:
+
+```bash
+scp -r skills/* user@server:~/.openclaw/skills/
+```
+
+**For family briefings**, the OpenClaw host also needs:
+- `gog` CLI installed and authenticated (`gog auth add --manual --services calendar --readonly`)
+- `gog` in the agent's PATH (symlink to `/usr/local/bin/gog` if installed via linuxbrew)
+- `todoist` skill installed (`npx clawhub install todoist`)
+- `weather` skill eligible (`openclaw skills status`)
+
+**For study sessions**, no extra OpenClaw config is needed — just set `studyStudents` in your MagicMirror config.
+
+See [docs/architecture.md](docs/architecture.md) for the full Gateway protocol and message flow.
+
 ## Configuration
 
 | Option | Default | Description |
@@ -262,6 +303,8 @@ MMM-Openclaw/
 ├── MMM-Openclaw.css         # Styles (3 themes)
 ├── node_helper.js           # Backend (Gateway WebSocket client)
 ├── package.json
+├── config/
+│   └── config.js.sample    # Copy-paste-ready MagicMirror config
 ├── tools/
 │   └── mock-gateway.js      # Local testing server
 ├── skills/                  # OpenClaw skills (SKILL.md format)

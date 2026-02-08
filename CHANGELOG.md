@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [0.3.0] - 2026-02-08
 
+### Added
+- `config/config.js.sample` — complete, copy-paste-ready MagicMirror config with `REPLACE_ME` markers
+- "OpenClaw Setup" section in README covering minimum Gateway setup and optional skill/tool prerequisites
+
 ### Changed
 - Flattened repo structure: module files (`MMM-Openclaw.js`, `node_helper.js`, etc.) now live at the repo root instead of a nested `MMM-Openclaw/` subdirectory, matching MagicMirror's expected module layout
 - `scripts/setup-mac.sh`: updated paths for flat layout, added `.gitignore` guard to avoid overwriting, fixed VS Code launch config paths

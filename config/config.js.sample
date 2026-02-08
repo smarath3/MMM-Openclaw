@@ -1,0 +1,101 @@
+/**
+ * MagicMirror² Configuration — MMM-Openclaw
+ *
+ * Copy this file to ~/MagicMirror/config/config.js and edit the
+ * values marked REPLACE_ME with your own settings.
+ *
+ * For development on Mac, use ./scripts/setup-mac.sh instead —
+ * it generates a config automatically in .magicmirror-dev/.
+ */
+
+let config = {
+  address: "localhost",
+  port: 8080,
+  basePath: "/",
+  ipWhitelist: ["127.0.0.1", "::fffd:127.0.0.1", "::1"],
+  language: "en",
+  locale: "en-US",
+  timeFormat: 12,
+  units: "imperial",
+
+  modules: [
+    // -----------------------------------------------------------------
+    // Context modules (give the mirror some baseline info)
+    // -----------------------------------------------------------------
+    {
+      module: "clock",
+      position: "top_left",
+      config: {
+        timeFormat: 12,
+        showDate: true,
+      },
+    },
+    {
+      module: "calendar",
+      header: "Family Calendar",
+      position: "top_left",
+      config: {
+        maximumEntries: 5,
+        calendars: [
+          {
+            fetchInterval: 60 * 60 * 1000,
+            symbol: "calendar",
+            url: "https://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics",
+          },
+        ],
+      },
+    },
+
+    // -----------------------------------------------------------------
+    // MMM-Openclaw
+    // -----------------------------------------------------------------
+    {
+      module: "MMM-Openclaw",
+      position: "bottom_bar",
+      config: {
+        // --- Connection (required) ---
+        gatewayUrl: "REPLACE_ME",   // e.g. "wss://your-openclaw-host:18789"
+        gatewayToken: "REPLACE_ME", // Gateway auth token from ~/.openclaw/openclaw.json
+
+        // --- Display ---
+        sessionName: "family-mirror",
+        maxMessages: 8,
+        showTypingIndicator: true,
+        showConnectionStatus: true,
+        showTimestamps: false,
+        theme: "default",           // "default" | "minimal" | "briefing"
+
+        // --- Multi-channel ---
+        displayChannels: [],        // empty = show all; e.g. ["whatsapp", "webchat"]
+        showChannelBadge: true,
+        showSenderName: true,
+
+        // --- Cross-module ---
+        allowNotificationTriggers: true,
+        broadcastResponses: true,
+
+        // --- Auto-hide (0 = never) ---
+        hideAfterInactivity: 0,
+
+        // --- Briefing tool commands ---
+        // These replace {{calendarCmd}} and {{taskCmd}} in scheduled briefing messages.
+        // Add your account email so the agent fetches the right calendar.
+        calendarCmd: "gog calendar list",       // e.g. "gog calendar list --account you@gmail.com"
+        taskCmd: "todoist",                     // e.g. "todoist tasks list"
+
+        // --- Study sessions (optional) ---
+        // Uncomment and edit to enable the afternoon-study scheduled briefing.
+        // studyStudents: [
+        //   { name: "Emma", age: 12 },
+        //   { name: "Jake", age: 9 },
+        // ],
+        // studySubjects: ["Math", "Science"],
+        // studyQuestionCount: 3,
+        // studyStandard: "California Common Core",
+      },
+    },
+  ],
+};
+
+/*************** DO NOT EDIT THE LINE BELOW ***************/
+if (typeof module !== "undefined") { module.exports = config; }
